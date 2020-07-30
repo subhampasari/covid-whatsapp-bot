@@ -8,10 +8,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const botController = require('./controllers/bot');
 const cronJobs = require('./utils/crons');
+const covidData = require('./utils/covidData');
 
 const port = process.env.PORT;
 
-cronJobs.fetchCovidData();
+covidData.fetchCovidData();
 cronJobs.fetchCovidDataCron();
 
 app.post('/api/v1/message', botController.serveData);
