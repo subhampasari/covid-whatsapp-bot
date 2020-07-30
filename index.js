@@ -11,6 +11,7 @@ const cronJobs = require('./utils/crons');
 
 const port = process.env.PORT;
 
+cronJobs.fetchCovidData();
 cronJobs.fetchCovidDataCron();
 
 app.post('/api/v1/message', botController.serveData);

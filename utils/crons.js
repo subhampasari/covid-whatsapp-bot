@@ -12,6 +12,9 @@ writeToFile = (filename, body) => {
 }
 
 fetchCovidData = () => {
+    const dataFilePath = path.join(__dirname, '../data/covidData.json');
+    const covidAPIHost = 'api.covid19api.com';
+    const dataPath = '/summary';
     const options = {
         'method': 'GET',
         'hostname': covidAPIHost,
@@ -41,14 +44,12 @@ fetchCovidData = () => {
     req.end();
 }
 
-exports.fetchCovidDataCron = () => {
-
-    const dataFilePath = path.join(__dirname, '../data/covidData.json');
-    const covidAPIHost = 'api.covid19api.com';
-    const dataPath = '/summary';
-
-    cron.schedule("*/30 * * * *", function() { 
+fetchCovidDataCron = () => {
+    cron.schedule("*/30 * * *  *", function() { 
         console.log("fetching data every 30 mins"); 
         fetchCovidData();
     });
 }
+
+exports.fetchCovidData = fetchCovidData;
+exports.fetchCovidDataCron = fetchCovidDataCron;
