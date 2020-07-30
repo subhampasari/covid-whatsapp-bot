@@ -6,7 +6,7 @@ const fs = require('fs');
 writeToFile = (filename, body) => {
     fs.writeFile(filename, JSON.stringify(body), (err, data) => {
         if(err) {
-            console.log("File write error");
+            console.log("File writer error");
         }
     });
 }
